@@ -13,6 +13,7 @@
 #include "driver_hub75.h"
 #include "driver_gxgde0213b1.h"
 #include "driver_fri3d.h"
+#include "driver_fds184.h"
 
 /* E-INK display as used on the SHA2017 and HackerHotel 2019 badges */
 #if defined(CONFIG_DRIVER_EINK_ENABLE)
@@ -97,6 +98,17 @@
 	#define FB_FLUSH(buffer,eink_flags,x0,y0,x1,y1) driver_fri3d_write(buffer);
 	#define COLOR_FILL_DEFAULT 0x000000
 	#define COLOR_TEXT_DEFAULT 0xFFFFFF
+
+/* FDS184 led matrix */
+#elif CONFIG_DRIVER_FDS184_ENABLE
+	#define FB_SIZE FDS184_BUFFER_SIZE
+	#define FB_WIDTH FDS184_WIDTH
+	#define FB_HEIGHT FDS184_HEIGHT
+	#define FB_TYPE_1BPP
+	#define FB_FLUSH(buffer,eink_flags,x0,y0,x1,y1) driver_fds184_switch_buffer(buffer);
+        #define COLOR_FILL_DEFAULT 0x000000
+        #define COLOR_TEXT_DEFAULT 0xFFFFFF
+
 #else
 	#error "Framebuffer driver enabled without a target display available!"
 #endif

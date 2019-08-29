@@ -1,0 +1,57 @@
+menu "Driver: FDS184 LED panel display"
+	config DRIVER_FDS184_ENABLE
+		bool "Enable the FDS184 LED driver, used for driving LED panels"
+		default n
+	
+	config PIN_NUM_FDS184_DATA
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as DATA pin"
+
+	config PIN_NUM_FDS184_A
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as A (row selector) pin"
+
+	config PIN_NUM_FDS184_B
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as B (row selector) pin"
+
+	config PIN_NUM_FDS184_C
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as C (row selector) pin"
+
+        config PIN_NUM_FDS184_SEG_A
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as SEG_A (segment selector) pin"
+
+        config PIN_NUM_FDS184_SEG_B
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as SEG_B (segment selector) pin"
+
+	config PIN_NUM_FDS184_LAT
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as LAT (latch) pin"
+
+	config PIN_NUM_FDS184_CLK
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as CLK (clock) pin"
+
+	config PIN_NUM_FDS184_OE
+		depends on DRIVER_FDS184_ENABLE
+		int "GPIO to use as OE (output enable) pin"
+
+	config FDS184_HEIGHT
+		depends on DRIVER_FDS184_ENABLE
+		int "Number of rows of LED panel (multiple of 16)"
+		default 64
+
+	config FDS184_WIDTH
+		depends on DRIVER_FDS184_ENABLE
+		int "Number of columns of LED panel (unlimited)"
+		default 48
+
+	config FDS184_CLOCK_SPEED
+		depends on DRIVER_FDS184_ENABLE
+		int "Clock speed to run the FDS184 I2S updates at"
+		default 2000000
+
+endmenu
