@@ -444,7 +444,7 @@ def read_mpy(filename):
     with open(filename, 'rb') as f:
         header = bytes_cons(f.read(4))
         if header[0] != ord('M'):
-            raise Exception('not a valid .mpy file')
+            raise Exception('not a valid .mpy file: %s' % filename)
         if header[1] != config.MPY_VERSION:
             raise Exception('incompatible .mpy version')
         feature_flags = header[2]
